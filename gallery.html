@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery | NIGHT FEVER VOICE</title>
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b12;
+    --floor-a:#15151f;
+    --floor-b:#1f1f2e;
+    --gold:#f9c74f;
+    --pink:#ff4d97;
+    --purple:#8b5cf6;
+    --orange:#ff6b35;
+    --cream:#fdf1dc;
+    --muted:#9d9bb3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(11,11,18,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(249,199,79,0.25);
+  }
+  nav{
+    max-width:1100px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;flex-wrap:wrap;gap:12px;
+  }
+  .logo{
+    font-family:'Bungee',cursive;
+    font-size:1.1rem;
+    letter-spacing:1px;
+    background:linear-gradient(90deg,var(--gold),var(--pink),var(--purple));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .nav-links{display:flex;gap:28px;flex-wrap:wrap;}
+  .nav-links a{
+    font-size:0.85rem;font-weight:600;letter-spacing:0.5px;
+    color:var(--cream);position:relative;padding:4px 0;
+    transition:color .25s;
+  }
+  .nav-links a.active{color:var(--gold);}
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:2px;
+    background:linear-gradient(90deg,var(--gold),var(--pink));
+    transition:width .25s;
+  }
+  .nav-links a:hover{color:var(--gold);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-links a.active::after{width:100%;}
+
+  /* ---------- PAGE HEADER ---------- */
+  .page-head{
+    max-width:720px;margin:0 auto;
+    padding:70px 24px 30px;
+    text-align:center;
+  }
+  .page-head .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;letter-spacing:3px;color:var(--pink);
+    margin-bottom:14px;
+  }
+  .page-head h1{
+    font-family:'Bungee',cursive;
+    font-size:clamp(1.8rem,5vw,2.6rem);
+    background:linear-gradient(90deg,var(--gold),var(--orange),var(--pink));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:14px;
+  }
+  .page-head p{
+    color:var(--muted);
+    font-size:0.95rem;
+    line-height:1.8;
+  }
+
+  /* ---------- FILTER ---------- */
+  .filters{
+    max-width:1100px;margin:0 auto;
+    padding:0 24px 30px;
+    display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+  }
+  .filter-btn{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;letter-spacing:1px;
+    color:var(--muted);
+    background:transparent;
+    border:1px solid rgba(157,155,179,0.3);
+    border-radius:20px;
+    padding:8px 18px;
+    cursor:pointer;
+    transition:all .25s;
+  }
+  .filter-btn:hover{color:var(--cream);border-color:rgba(249,199,79,0.4);}
+  .filter-btn.active{
+    color:#08080d;
+    background:linear-gradient(90deg,var(--gold),var(--pink));
+    border-color:transparent;
+  }
+
+  /* ---------- GALLERY GRID ---------- */
+  .gallery{
+    max-width:1100px;margin:0 auto;
+    padding:10px 24px 100px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+  }
+  @media(min-width:640px){
+    .gallery{grid-template-columns:repeat(3,1fr);}
+  }
+  .card{
+    position:relative;
+    aspect-ratio:1/1;
+    border-radius:10px;
+    overflow:hidden;
+    cursor:pointer;
+    border:1px solid rgba(249,199,79,0.15);
+    background:linear-gradient(135deg,var(--floor-a),var(--floor-b));
+    display:flex;align-items:flex-end;
+    transition:transform .25s, border-color .25s;
+  }
+  .card:hover{transform:translateY(-4px);border-color:rgba(249,199,79,0.5);}
+  .card .swatch{
+    position:absolute;inset:0;
+    opacity:0.55;
+  }
+  .card:nth-child(6n+1) .swatch{background:radial-gradient(circle at 30% 30%, var(--gold), transparent 70%);}
+  .card:nth-child(6n+2) .swatch{background:radial-gradient(circle at 70% 30%, var(--pink), transparent 70%);}
+  .card:nth-child(6n+3) .swatch{background:radial-gradient(circle at 30% 70%, var(--purple), transparent 70%);}
+  .card:nth-child(6n+4) .swatch{background:radial-gradient(circle at 70% 70%, var(--orange), transparent 70%);}
+  .card:nth-child(6n+5) .swatch{background:radial-gradient(circle at 50% 20%, var(--pink), transparent 70%);}
+  .card:nth-child(6n+6) .swatch{background:radial-gradient(circle at 50% 80%, var(--gold), transparent 70%);}
+  .card .caption{
+    position:relative;z-index:1;
+    width:100%;
+    padding:14px;
+    background:linear-gradient(to top, rgba(8,8,13,0.9), transparent);
+  }
+  .card .caption .t{
+    font-family:'Bungee',cursive;
+    font-size:0.85rem;
+    color:var(--cream);
+    display:block;
+    margin-bottom:4px;
+  }
+  .card .caption .s{
+    font-family:'Space Mono',monospace;
+    font-size:0.68rem;
+    color:var(--muted);
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    display:none;
+    position:fixed;inset:0;z-index:200;
+    background:rgba(5,5,9,0.92);
+    align-items:center;justify-content:center;
+    padding:24px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox-inner{
+    max-width:520px;width:100%;
+    background:linear-gradient(135deg,var(--floor-a),var(--floor-b));
+    border:1px solid rgba(249,199,79,0.3);
+    border-radius:14px;
+    padding:40px 28px;
+    text-align:center;
+    position:relative;
+  }
+  .lightbox-inner .lb-swatch{
+    width:100%;aspect-ratio:16/9;
+    border-radius:10px;margin-bottom:20px;
+    background:radial-gradient(circle at 40% 40%, var(--pink), var(--purple) 80%);
+    opacity:0.8;
+  }
+  .lightbox-inner h3{
+    font-family:'Bungee',cursive;
+    font-size:1.1rem;color:var(--cream);margin-bottom:10px;
+  }
+  .lightbox-inner p{
+    font-size:0.9rem;color:var(--muted);line-height:1.8;
+  }
+  .lb-close{
+    position:absolute;top:14px;right:16px;
+    background:none;border:none;
+    color:var(--muted);font-size:1.3rem;cursor:pointer;
+    line-height:1;
+  }
+  .lb-close:hover{color:var(--gold);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid rgba(249,199,79,0.2);
+    background:#08080d;
+    padding:56px 24px 40px;
+  }
+  .footer-inner{
+    max-width:920px;margin:0 auto;
+    display:flex;flex-direction:column;gap:36px;
+  }
+  .footer-hub{text-align:center;}
+  .footer-hub p{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;color:var(--muted);letter-spacing:1px;margin-bottom:10px;
+  }
+  .footer-hub a.hub-link{
+    font-family:'Bungee',cursive;font-size:0.95rem;color:var(--gold);
+  }
+  .platform-links{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:14px 24px;
+    font-size:0.8rem;color:var(--muted);
+  }
+  .platform-links span{
+    padding:6px 14px;border:1px solid rgba(157,155,179,0.3);border-radius:20px;
+  }
+  .contact-box{
+    max-width:420px;margin:0 auto;width:100%;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(249,199,79,0.2);
+    border-radius:12px;padding:24px;
+  }
+  .contact-box p.label{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;color:var(--gold);letter-spacing:2px;margin-bottom:14px;
+    text-align:center;
+  }
+  .contact-box form{display:flex;flex-direction:column;gap:10px;}
+  .contact-box input, .contact-box textarea{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(157,155,179,0.3);
+    border-radius:6px;padding:10px 12px;
+    color:var(--cream);font-family:'Poppins',sans-serif;font-size:0.85rem;
+  }
+  .contact-box textarea{resize:vertical;min-height:70px;}
+  .contact-box button{
+    margin-top:4px;
+    background:linear-gradient(90deg,var(--gold),var(--pink));
+    border:none;border-radius:6px;padding:10px;
+    font-family:'Bungee',cursive;font-size:0.8rem;color:#08080d;
+    cursor:pointer;transition:opacity .2s;
+  }
+  .contact-box button:hover{opacity:0.85;}
+  .ai-notice{
+    text-align:center;font-size:0.7rem;color:var(--muted);
+    line-height:1.8;max-width:640px;margin:0 auto;
+  }
+  .copyright{
+    text-align:center;font-family:'Space Mono',monospace;
+    font-size:0.7rem;color:#4a4959;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo">NIGHT FEVER VOICE</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="playlist.html">Playlist</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+</header>
+
+<div class="page-head">
+  <p class="eyebrow">SNAPSHOTS</p>
+  <h1>GALLERY</h1>
+  <p>曲のイメージ、練習メモ、気になった歌詞の一節。<br>フロアに散らばった記録たち。</p>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" data-filter="all">ALL</button>
+  <button class="filter-btn" data-filter="song">曲イメージ</button>
+  <button class="filter-btn" data-filter="practice">練習メモ</button>
+  <button class="filter-btn" data-filter="lyric">歌詞メモ</button>
+</div>
+
+<div class="gallery" id="gallery">
+
+  <div class="card" data-cat="song" data-title="untitled #1" data-sub="曲イメージ" data-desc="ここに曲のイメージや参考画像の説明を入れる。">
+    <div class="swatch"></div>
+    <div class="caption"><span class="t">untitled #1</span><span class="s">曲イメージ</span></div>
+  </div>
+
+  <div class="card" data-cat="practice" data-title="untitled #2" data-sub="練習メモ" data-desc="ここに練習メモの内容や気づいたことを入れる。">
+    <div class="swatch"></div>
+    <div class="caption"><span class="t">untitled #2</span><span class="s">練習メモ</span></div>
+  </div>
+
+  <div class="card" data-cat="lyric" data-title="untitled #3" data-sub="歌詞メモ" data-desc="ここに気になった歌詞の一節や解釈メモを入れる。">
+    <div class="swatch"></div>
+    <div class="caption"><span class="t">untitled #3</span><span class="s">歌詞メモ</span></div>
+  </div>
+
+  <div class="card" data-cat="song" data-title="untitled #4" data-sub="曲イメージ" data-desc="ここに曲のイメージや参考画像の説明を入れる。">
+    <div class="swatch"></div>
+    <div class="caption"><span class="t">untitled #4</span><span class="s">曲イメージ</span></div>
+  </div>
+
+  <div class="card" data-cat="practice" data-title="untitled #5" data-sub="練習メモ" data-desc="ここに練習メモの内容や気づいたことを入れる。">
+    <div class="swatch"></div>
+    <div class="caption"><span class="t">untitled #5</span><span class="s">練習メモ</span></div>
+  </div>
+
+  <div class="card" data-cat="lyric" data-title="untitled #6" data-sub="歌詞メモ" data-desc="ここに気になった歌詞の一節や解釈メモを入れる。">
+    <div class="swatch"></div>
+    <div class="caption"><span class="t">untitled #6</span><span class="s">歌詞メモ</span></div>
+  </div>
+
+</div>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lb-close" id="lbClose">&times;</button>
+    <div class="lb-swatch"></div>
+    <h3 id="lbTitle"></h3>
+    <p id="lbDesc"></p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-hub">
+      <p>MORE FROM</p>
+      <a class="hub-link" href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Azalea Creative Room</a>
+    </div>
+    <div class="platform-links">
+      <span>Jump Rookie: Azalea72</span>
+      <span>DaysNEO</span>
+      <span>Kakuyomu</span>
+      <span>Pixiv</span>
+      <span>YouTube: リリポピ</span>
+    </div>
+
+    <div class="contact-box">
+      <p class="label">ひとことフィードバック</p>
+      <form action="https://formspree.io/f/maqvpvoz" method="POST">
+        <input type="text" name="name" placeholder="お名前(任意)">
+        <input type="email" name="email" placeholder="メールアドレス(任意)">
+        <textarea name="message" placeholder="感想や選曲リクエストなど" required></textarea>
+        <button type="submit">送信する</button>
+      </form>
+    </div>
+
+    <p class="ai-notice">
+      本サイトに掲載する文章・画像・イラストは、生成AIの学習データとして使用することを禁じます。<br>
+      No content on this site may be used for AI training purposes.
+    </p>
+    <p class="copyright">&copy; 2026 NIGHT FEVER VOICE / Azalea Creative Room</p>
+  </div>
+</footer>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.card');
+  filterBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      filterBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(c=>{
+        c.style.display = (f==='all' || c.dataset.cat===f) ? 'flex' : 'none';
+      });
+    });
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbDesc = document.getElementById('lbDesc');
+  cards.forEach(c=>{
+    c.addEventListener('click', ()=>{
+      lbTitle.textContent = c.dataset.title;
+      lbDesc.textContent = c.dataset.desc;
+      lightbox.classList.add('open');
+    });
+  });
+  document.getElementById('lbClose').addEventListener('click', ()=>lightbox.classList.remove('open'));
+  lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) lightbox.classList.remove('open'); });
+</script>
+
+</body>
+</html>
