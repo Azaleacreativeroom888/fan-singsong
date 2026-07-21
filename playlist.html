@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playlist | NIGHT FEVER VOICE</title>
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b12;
+    --floor-a:#15151f;
+    --floor-b:#1f1f2e;
+    --gold:#f9c74f;
+    --pink:#ff4d97;
+    --purple:#8b5cf6;
+    --orange:#ff6b35;
+    --cream:#fdf1dc;
+    --muted:#9d9bb3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(11,11,18,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(249,199,79,0.25);
+  }
+  nav{
+    max-width:1100px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;flex-wrap:wrap;gap:12px;
+  }
+  .logo{
+    font-family:'Bungee',cursive;
+    font-size:1.1rem;
+    letter-spacing:1px;
+    background:linear-gradient(90deg,var(--gold),var(--pink),var(--purple));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .nav-links{display:flex;gap:28px;flex-wrap:wrap;}
+  .nav-links a{
+    font-size:0.85rem;font-weight:600;letter-spacing:0.5px;
+    color:var(--cream);position:relative;padding:4px 0;
+    transition:color .25s;
+  }
+  .nav-links a.active{color:var(--gold);}
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:2px;
+    background:linear-gradient(90deg,var(--gold),var(--pink));
+    transition:width .25s;
+  }
+  .nav-links a:hover{color:var(--gold);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-links a.active::after{width:100%;}
+
+  /* ---------- PAGE HEADER ---------- */
+  .page-head{
+    max-width:720px;margin:0 auto;
+    padding:70px 24px 30px;
+    text-align:center;
+  }
+  .page-head .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;letter-spacing:3px;color:var(--pink);
+    margin-bottom:14px;
+  }
+  .page-head h1{
+    font-family:'Bungee',cursive;
+    font-size:clamp(1.8rem,5vw,2.6rem);
+    background:linear-gradient(90deg,var(--gold),var(--orange),var(--pink));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:14px;
+  }
+  .page-head p{
+    color:var(--muted);
+    font-size:0.95rem;
+    line-height:1.8;
+  }
+
+  /* ---------- PLAYLIST TABLE ---------- */
+  .list-wrap{
+    max-width:760px;margin:0 auto;
+    padding:10px 24px 100px;
+  }
+  .p-table{
+    width:100%;
+    border-collapse:collapse;
+    border:1px solid rgba(249,199,79,0.2);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .p-table thead th{
+    font-family:'Space Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:1.5px;
+    color:var(--gold);
+    text-align:left;
+    padding:14px 16px;
+    background:rgba(249,199,79,0.07);
+    border-bottom:1px solid rgba(249,199,79,0.2);
+  }
+  .p-table thead th.score-col{text-align:right;}
+  .p-table tbody tr{
+    background:var(--floor-a);
+    transition:background .2s;
+  }
+  .p-table tbody tr:nth-child(even){background:var(--floor-b);}
+  .p-table tbody tr:hover{background:rgba(255,77,151,0.06);}
+  .p-table tbody td{
+    padding:16px;
+    border-bottom:1px solid rgba(157,155,179,0.12);
+    font-size:0.92rem;
+  }
+  .p-table tbody tr:last-child td{border-bottom:none;}
+  .p-table .song-title{
+    font-weight:600;
+    color:var(--cream);
+  }
+  .p-table .artist{
+    color:var(--muted);
+    font-size:0.85rem;
+  }
+  .p-table .score{
+    text-align:right;
+    font-family:'Space Mono',monospace;
+    font-weight:700;
+    font-size:1.05rem;
+  }
+  .p-table .score.high{color:var(--gold);}
+  .p-table .score.mid{color:var(--pink);}
+  .p-table .score.low{color:var(--muted);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid rgba(249,199,79,0.2);
+    background:#08080d;
+    padding:56px 24px 40px;
+  }
+  .footer-inner{
+    max-width:920px;margin:0 auto;
+    display:flex;flex-direction:column;gap:36px;
+  }
+  .footer-hub{text-align:center;}
+  .footer-hub p{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;color:var(--muted);letter-spacing:1px;margin-bottom:10px;
+  }
+  .footer-hub a.hub-link{
+    font-family:'Bungee',cursive;font-size:0.95rem;color:var(--gold);
+  }
+  .platform-links{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:14px 24px;
+    font-size:0.8rem;color:var(--muted);
+  }
+  .platform-links span{
+    padding:6px 14px;border:1px solid rgba(157,155,179,0.3);border-radius:20px;
+  }
+  .contact-box{
+    max-width:420px;margin:0 auto;width:100%;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(249,199,79,0.2);
+    border-radius:12px;padding:24px;
+  }
+  .contact-box p.label{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;color:var(--gold);letter-spacing:2px;margin-bottom:14px;
+    text-align:center;
+  }
+  .contact-box form{display:flex;flex-direction:column;gap:10px;}
+  .contact-box input, .contact-box textarea{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(157,155,179,0.3);
+    border-radius:6px;padding:10px 12px;
+    color:var(--cream);font-family:'Poppins',sans-serif;font-size:0.85rem;
+  }
+  .contact-box textarea{resize:vertical;min-height:70px;}
+  .contact-box button{
+    margin-top:4px;
+    background:linear-gradient(90deg,var(--gold),var(--pink));
+    border:none;border-radius:6px;padding:10px;
+    font-family:'Bungee',cursive;font-size:0.8rem;color:#08080d;
+    cursor:pointer;transition:opacity .2s;
+  }
+  .contact-box button:hover{opacity:0.85;}
+  .ai-notice{
+    text-align:center;font-size:0.7rem;color:var(--muted);
+    line-height:1.8;max-width:640px;margin:0 auto;
+  }
+  .copyright{
+    text-align:center;font-family:'Space Mono',monospace;
+    font-size:0.7rem;color:#4a4959;
+  }
+
+  @media(max-width:520px){
+    .p-table thead{display:none;}
+    .p-table, .p-table tbody, .p-table tr, .p-table td{display:block;width:100%;}
+    .p-table tbody tr{padding:16px;border-radius:8px;margin-bottom:2px;}
+    .p-table tbody td{border-bottom:none;padding:2px 0;}
+    .p-table .score{text-align:left;margin-top:6px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo">NIGHT FEVER VOICE</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="playlist.html" class="active">Playlist</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+</header>
+
+<div class="page-head">
+  <p class="eyebrow">TONIGHT'S SETLIST</p>
+  <h1>PLAYLIST</h1>
+  <p>次にカラオケで歌いたい曲と、今の得点の記録。</p>
+</div>
+
+<div class="list-wrap">
+  <table class="p-table">
+    <thead>
+      <tr>
+        <th>曲名</th>
+        <th>歌手</th>
+        <th class="score-col">現在の点数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="song-title">曲名を入力</td>
+        <td class="artist">歌手名を入力</td>
+        <td class="score high">92.5</td>
+      </tr>
+      <tr>
+        <td class="song-title">曲名を入力</td>
+        <td class="artist">歌手名を入力</td>
+        <td class="score mid">85.0</td>
+      </tr>
+      <tr>
+        <td class="song-title">曲名を入力</td>
+        <td class="artist">歌手名を入力</td>
+        <td class="score low">—</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-hub">
+      <p>MORE FROM</p>
+      <a class="hub-link" href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Azalea Creative Room</a>
+    </div>
+    <div class="platform-links">
+      <span>Jump Rookie: Azalea72</span>
+      <span>DaysNEO</span>
+      <span>Kakuyomu</span>
+      <span>Pixiv</span>
+      <span>YouTube: リリポピ</span>
+    </div>
+
+    <div class="contact-box">
+      <p class="label">ひとことフィードバック</p>
+      <form action="https://formspree.io/f/maqvpvoz" method="POST">
+        <input type="text" name="name" placeholder="お名前(任意)">
+        <input type="email" name="email" placeholder="メールアドレス(任意)">
+        <textarea name="message" placeholder="感想や選曲リクエストなど" required></textarea>
+        <button type="submit">送信する</button>
+      </form>
+    </div>
+
+    <p class="ai-notice">
+      本サイトに掲載する文章・画像・イラストは、生成AIの学習データとして使用することを禁じます。<br>
+      No content on this site may be used for AI training purposes.
+    </p>
+    <p class="copyright">&copy; 2026 NIGHT FEVER VOICE / Azalea Creative Room</p>
+  </div>
+</footer>
+
+</body>
+</html>
