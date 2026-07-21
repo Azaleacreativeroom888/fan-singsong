@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | NIGHT FEVER VOICE</title>
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b12;
+    --floor-a:#15151f;
+    --floor-b:#1f1f2e;
+    --gold:#f9c74f;
+    --pink:#ff4d97;
+    --purple:#8b5cf6;
+    --orange:#ff6b35;
+    --cream:#fdf1dc;
+    --muted:#9d9bb3;
+    --error:#ff6b6b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- NAV ---------- */
+  header.site-header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(11,11,18,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(249,199,79,0.25);
+  }
+  nav{
+    max-width:1100px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;flex-wrap:wrap;gap:12px;
+  }
+  .logo{
+    font-family:'Bungee',cursive;
+    font-size:1.1rem;
+    letter-spacing:1px;
+    background:linear-gradient(90deg,var(--gold),var(--pink),var(--purple));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .nav-links{display:flex;gap:28px;flex-wrap:wrap;}
+  .nav-links a{
+    font-size:0.85rem;font-weight:600;letter-spacing:0.5px;
+    color:var(--cream);position:relative;padding:4px 0;
+    transition:color .25s;
+  }
+  .nav-links a.active{color:var(--gold);}
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:2px;
+    background:linear-gradient(90deg,var(--gold),var(--pink));
+    transition:width .25s;
+  }
+  .nav-links a:hover{color:var(--gold);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-links a.active::after{width:100%;}
+
+  /* ---------- PAGE HEADER ---------- */
+  .page-head{
+    max-width:720px;margin:0 auto;
+    padding:70px 24px 30px;
+    text-align:center;
+  }
+  .page-head .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;letter-spacing:3px;color:var(--pink);
+    margin-bottom:14px;
+  }
+  .page-head h1{
+    font-family:'Bungee',cursive;
+    font-size:clamp(1.8rem,5vw,2.6rem);
+    background:linear-gradient(90deg,var(--gold),var(--orange),var(--pink));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:14px;
+  }
+  .page-head p{
+    color:var(--muted);
+    font-size:0.95rem;
+    line-height:1.8;
+  }
+
+  /* ---------- MAIN ---------- */
+  main{
+    max-width:820px;margin:0 auto;
+    padding:10px 24px 100px;
+  }
+  .section-label{
+    font-family:'Space Mono',monospace;
+    font-size:0.72rem;
+    color:var(--gold);
+    letter-spacing:3px;
+    display:flex;align-items:center;gap:14px;
+    margin:52px 0 20px;
+  }
+  .section-label::after{
+    content:'';flex:1;height:1px;
+    background:linear-gradient(90deg, rgba(249,199,79,0.3), transparent);
+  }
+  .section-label:first-child{margin-top:0;}
+
+  .intro-block p{
+    color:var(--cream);
+    font-size:0.98rem;
+    line-height:2;
+    margin-bottom:16px;
+  }
+  .intro-block p:last-child{margin-bottom:0;}
+
+  /* ---------- LINK GRID ---------- */
+  .link-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:14px;
+  }
+  .link-card{
+    display:flex;align-items:center;gap:16px;
+    background:linear-gradient(135deg, var(--floor-a), var(--floor-b));
+    border:1px solid rgba(249,199,79,0.2);
+    border-radius:8px;
+    padding:16px 18px;
+    position:relative;
+    overflow:hidden;
+    transition:all .25s;
+  }
+  .link-card::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(180deg,var(--gold),var(--pink));
+  }
+  .link-card:hover{
+    border-color:rgba(249,199,79,0.5);
+    transform:translateY(-3px);
+  }
+  .link-icon{
+    font-size:22px;flex-shrink:0;
+    width:42px;height:42px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(249,199,79,0.08);
+    border:1px solid rgba(249,199,79,0.2);
+    border-radius:50%;
+  }
+  .link-text{flex:1;min-width:0;}
+  .link-name{
+    display:block;font-size:0.9rem;font-weight:600;
+    color:var(--cream);margin-bottom:3px;
+  }
+  .link-desc{
+    display:block;font-size:0.75rem;color:var(--muted);line-height:1.5;
+  }
+  .link-arrow{
+    font-size:1.1rem;color:rgba(249,199,79,0.4);
+    flex-shrink:0;transition:all .25s;
+  }
+  .link-card:hover .link-arrow{color:var(--gold);transform:translateX(3px);}
+
+  /* ---------- CONTACT FORM ---------- */
+  .form-card{
+    background:linear-gradient(135deg, var(--floor-a), var(--floor-b));
+    border:1px solid rgba(249,199,79,0.25);
+    border-radius:10px;
+    padding:28px 30px;
+    position:relative;
+  }
+  .form-card::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(180deg,var(--gold),var(--pink));
+  }
+  .form-intro{
+    font-size:0.9rem;color:var(--muted);line-height:1.9;margin-bottom:22px;
+  }
+  .form-group{margin-bottom:18px;}
+  .form-label{
+    display:block;font-family:'Space Mono',monospace;
+    font-size:0.7rem;color:var(--gold);letter-spacing:1.5px;margin-bottom:7px;
+  }
+  .required{color:var(--pink);}
+  .form-input, .form-textarea{
+    width:100%;
+    background:rgba(0,0,0,0.3);
+    border:1px solid rgba(157,155,179,0.3);
+    border-radius:6px;
+    color:var(--cream);
+    font-family:'Poppins',sans-serif;
+    font-size:0.9rem;
+    padding:10px 14px;
+    outline:none;
+    transition:border-color .25s, box-shadow .25s;
+  }
+  .form-input::placeholder, .form-textarea::placeholder{color:#5a5870;}
+  .form-input:focus, .form-textarea:focus{
+    border-color:rgba(249,199,79,0.6);
+    box-shadow:0 0 10px rgba(249,199,79,0.15);
+  }
+  .form-textarea{resize:vertical;min-height:130px;}
+  .field-error{
+    display:block;font-size:0.72rem;color:var(--error);margin-top:5px;letter-spacing:0.5px;
+  }
+  .form-submit{
+    display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(90deg,var(--gold),var(--pink));
+    border:none;border-radius:6px;
+    color:#08080d;
+    font-family:'Bungee',cursive;
+    font-size:0.82rem;
+    letter-spacing:1px;
+    padding:11px 26px;
+    cursor:pointer;
+    transition:opacity .25s;
+    margin-top:6px;
+  }
+  .form-submit:hover{opacity:0.85;}
+  .form-submit:disabled{opacity:0.5;cursor:not-allowed;}
+  .form-success{
+    background:rgba(249,199,79,0.1);
+    border:1px solid rgba(249,199,79,0.35);
+    border-radius:6px;
+    padding:16px 20px;
+    text-align:center;
+    color:var(--gold);
+    font-size:0.9rem;
+    margin-bottom:20px;
+    letter-spacing:0.5px;
+  }
+  .form-success-icon{display:block;font-size:1.2rem;margin-bottom:8px;}
+  .form-error-global{
+    background:rgba(255,107,107,0.1);
+    border:1px solid rgba(255,107,107,0.35);
+    border-radius:6px;
+    padding:12px 16px;
+    color:var(--error);
+    font-size:0.85rem;
+    margin-bottom:16px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid rgba(249,199,79,0.2);
+    background:#08080d;
+    padding:40px 24px;
+    text-align:center;
+  }
+  .ai-notice{
+    font-size:0.7rem;
+    color:var(--muted);
+    line-height:1.8;
+    max-width:640px;
+    margin:0 auto 12px;
+  }
+  .copyright{
+    font-family:'Space Mono',monospace;
+    font-size:0.7rem;
+    color:#4a4959;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav>
+    <a href="index.html" class="logo">NIGHT FEVER VOICE</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="playlist.html">Playlist</a>
+      <a href="about.html" class="active">About</a>
+    </div>
+  </nav>
+</header>
+
+<div class="page-head">
+  <p class="eyebrow">WHO'S ON THE FLOOR</p>
+  <h1>ABOUT</h1>
+  <p>このサイトと、管理人について。</p>
+</div>
+
+<main>
+
+  <p class="section-label">このサイトについて</p>
+  <div class="intro-block">
+    <p>好きな曲を研究して、練習して、次のカラオケでキメる。NIGHT FEVER VOICEは、そんな夜のための個人的な勉強ノートです。</p>
+    <p>発声の練習記録、曲のイメージや歌詞のメモ、カラオケで歌いたい曲のリストを、ここに少しずつ積み重ねていきます。派手な照明の下でも、地味な積み重ねがものを言う、そんな気持ちで運営中。</p>
+  </div>
+
+  <p class="section-label">プラットフォーム</p>
+  <div class="link-grid">
+
+    <a class="link-card" href="https://rookie.shonenjump.com/users/14728546961183734555" target="_blank" rel="noopener">
+      <div class="link-icon">📚</div>
+      <div class="link-text">
+        <span class="link-name">ジャンプルーキー</span>
+        <span class="link-desc">オリジナル漫画を掲載中</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://daysneo.com/author/Sam333333Sam/" target="_blank" rel="noopener">
+      <div class="link-icon">🌙</div>
+      <div class="link-text">
+        <span class="link-name">DaysNEO</span>
+        <span class="link-desc">漫画掲載サイト</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://www.pixiv.net/users/105728284" target="_blank" rel="noopener">
+      <div class="link-icon">🎨</div>
+      <div class="link-text">
+        <span class="link-name">Pixiv</span>
+        <span class="link-desc">イラストを掲載中</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" rel="noopener">
+      <div class="link-icon">✒️</div>
+      <div class="link-text">
+        <span class="link-name">カクヨム</span>
+        <span class="link-desc">小説を掲載中</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://www.youtube.com/@LilyPopins0512" target="_blank" rel="noopener">
+      <div class="link-icon">🎬</div>
+      <div class="link-text">
+        <span class="link-name">YouTube（リリポピ）</span>
+        <span class="link-desc">動画チャンネル</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">
+      <div class="link-icon">🦋</div>
+      <div class="link-text">
+        <span class="link-name">Bluesky</span>
+        <span class="link-desc">近況・作品のお知らせ</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">
+      <div class="link-icon">🪩</div>
+      <div class="link-text">
+        <span class="link-name">Azalea Creative Room</span>
+        <span class="link-desc">創作活動のハブサイト</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+  </div>
+
+  <p class="section-label">お問い合わせ</p>
+
+  <div class="form-card">
+    <p class="form-intro">感想や選曲リクエストなど、お気軽にどうぞ。<br>Gmailで受け取り、返信いたします。</p>
+
+    <div data-fs-success class="form-success" style="display:none;">
+      <span class="form-success-icon">✦</span>
+      <p>メッセージを送信しました。ありがとうございます！</p>
+    </div>
+
+    <div data-fs-error class="form-error-global" style="display:none;"></div>
+
+    <form id="contact-form" action="https://formspree.io/f/maqvpvoz" method="POST">
+
+      <div class="form-group">
+        <label class="form-label" for="name">お名前</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="お名前">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">メールアドレス <span class="required">*</span></label>
+        <input class="form-input" type="email" id="email" name="email" data-fs-field placeholder="example@email.com" required>
+        <span data-fs-error="email" class="field-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="message">メッセージ <span class="required">*</span></label>
+        <textarea class="form-textarea" id="message" name="message" data-fs-field placeholder="メッセージを入力してください…" rows="6" required></textarea>
+        <span data-fs-error="message" class="field-error"></span>
+      </div>
+
+      <button class="form-submit" type="submit" data-fs-submit-btn>
+        送信する
+      </button>
+
+    </form>
+  </div>
+
+</main>
+
+<footer>
+  <p class="ai-notice">
+    本サイトに掲載する文章・画像・イラストは、生成AIの学習データとして使用することを禁じます。トレース・無断転載・二次利用もご遠慮ください。<br>
+    No content on this site may be used for AI training, tracing, or unauthorized reproduction.
+  </p>
+  <p class="copyright">&copy; 2026 NIGHT FEVER VOICE / Azalea Creative Room</p>
+</footer>
+
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contact-form', formId: 'maqvpvoz' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
