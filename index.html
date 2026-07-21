@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIGHT FEVER VOICE | 歌の勉強部屋</title>
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b12;
+    --floor-a:#15151f;
+    --floor-b:#1f1f2e;
+    --gold:#f9c74f;
+    --pink:#ff4d97;
+    --purple:#8b5cf6;
+    --orange:#ff6b35;
+    --cream:#fdf1dc;
+    --muted:#9d9bb3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(11,11,18,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(249,199,79,0.25);
+  }
+  nav{
+    max-width:1100px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;flex-wrap:wrap;gap:12px;
+  }
+  .logo{
+    font-family:'Bungee',cursive;
+    font-size:1.1rem;
+    letter-spacing:1px;
+    background:linear-gradient(90deg,var(--gold),var(--pink),var(--purple));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .nav-links{display:flex;gap:28px;flex-wrap:wrap;}
+  .nav-links a{
+    font-size:0.85rem;font-weight:600;letter-spacing:0.5px;
+    color:var(--cream);position:relative;padding:4px 0;
+    transition:color .25s;
+  }
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:2px;
+    background:linear-gradient(90deg,var(--gold),var(--pink));
+    transition:width .25s;
+  }
+  .nav-links a:hover{color:var(--gold);}
+  .nav-links a:hover::after{width:100%;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;
+    padding:80px 24px 60px;
+    background:
+      repeating-linear-gradient(115deg,
+        rgba(255,77,151,0.08) 0px, rgba(255,77,151,0.08) 40px,
+        transparent 40px, transparent 80px,
+        rgba(139,92,246,0.08) 80px, rgba(139,92,246,0.08) 120px,
+        transparent 120px, transparent 160px,
+        rgba(249,199,79,0.08) 160px, rgba(249,199,79,0.08) 200px,
+        transparent 200px, transparent 240px),
+      var(--bg);
+    overflow:hidden;
+  }
+
+  /* disco ball */
+  .ball-wrap{
+    position:relative;
+    width:150px;height:150px;
+    margin-bottom:28px;
+  }
+  .rays{
+    position:absolute;
+    top:50%;left:50%;
+    width:600px;height:600px;
+    transform:translate(-50%,-55%);
+    background:conic-gradient(
+      from 0deg,
+      transparent 0deg, rgba(249,199,79,0.18) 8deg, transparent 16deg,
+      transparent 40deg, rgba(255,77,151,0.15) 48deg, transparent 56deg,
+      transparent 90deg, rgba(139,92,246,0.15) 98deg, transparent 106deg,
+      transparent 140deg, rgba(249,199,79,0.15) 148deg, transparent 156deg,
+      transparent 190deg, rgba(255,77,151,0.15) 198deg, transparent 206deg,
+      transparent 240deg, rgba(139,92,246,0.15) 248deg, transparent 256deg,
+      transparent 290deg, rgba(249,199,79,0.15) 298deg, transparent 306deg,
+      transparent 340deg, rgba(255,77,151,0.15) 348deg, transparent 360deg
+    );
+    border-radius:50%;
+    animation:spin-rays 14s linear infinite;
+    filter:blur(1px);
+  }
+  @keyframes spin-rays{to{transform:translate(-50%,-55%) rotate(360deg);}}
+
+  .ball{
+    position:relative;
+    width:150px;height:150px;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 35% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.1) 30%, transparent 55%),
+      repeating-conic-gradient(from 0deg, #c9c9d8 0deg 9deg, #83839c 9deg 18deg);
+    background-blend-mode:screen, normal;
+    box-shadow:
+      0 0 40px rgba(249,199,79,0.35),
+      0 0 90px rgba(255,77,151,0.25),
+      inset -10px -10px 30px rgba(0,0,0,0.5);
+    animation:ball-spin 6s linear infinite;
+  }
+  @keyframes ball-spin{to{background-position:150px 0;}}
+  .ball::before{
+    content:'';position:absolute;inset:0;border-radius:50%;
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0 9px, transparent 9px 18px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.15) 0 9px, transparent 9px 18px);
+  }
+
+  .hero h1{
+    font-family:'Bungee',cursive;
+    font-size:clamp(2.4rem,7vw,4.6rem);
+    line-height:1.05;
+    background:linear-gradient(90deg,var(--gold),var(--orange),var(--pink),var(--purple));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 0 60px rgba(255,77,151,0.25);
+    margin-bottom:14px;
+  }
+  .hero .sub{
+    font-size:clamp(1rem,2.4vw,1.3rem);
+    color:var(--cream);
+    font-weight:500;
+    margin-bottom:8px;
+  }
+  .hero .tagline{
+    font-family:'Space Mono',monospace;
+    font-size:0.85rem;
+    color:var(--muted);
+    letter-spacing:1px;
+    max-width:520px;
+    margin:0 auto;
+  }
+  .hero .scroll-hint{
+    margin-top:56px;
+    font-size:0.75rem;
+    color:var(--muted);
+    letter-spacing:2px;
+    animation:bob 2s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+
+  /* ---------- INTRO ---------- */
+  section{
+    max-width:920px;margin:0 auto;padding:80px 24px;
+  }
+  .intro{
+    text-align:center;
+  }
+  .intro .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;letter-spacing:3px;color:var(--gold);
+    margin-bottom:14px;
+  }
+  .intro h2{
+    font-family:'Bungee',cursive;
+    font-size:clamp(1.4rem,3.6vw,2rem);
+    color:var(--cream);
+    margin-bottom:20px;
+  }
+  .intro p{
+    color:var(--muted);
+    font-size:1.02rem;
+    line-height:1.9;
+    max-width:640px;
+    margin:0 auto;
+  }
+
+  /* ---------- DANCE FLOOR NAV ---------- */
+  .floor-section{max-width:1100px;margin:0 auto;padding:20px 24px 100px;}
+  .floor-section .eyebrow{
+    text-align:center;
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;letter-spacing:3px;color:var(--pink);
+    margin-bottom:40px;
+  }
+  .floor{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:2px;
+    background:#000;
+    border:2px solid rgba(249,199,79,0.3);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  @media(min-width:700px){
+    .floor{grid-template-columns:repeat(4,1fr);}
+  }
+  .tile{
+    position:relative;
+    aspect-ratio:1/1;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;
+    padding:20px;
+    background:var(--floor-a);
+    transition:background .3s, transform .25s;
+    overflow:hidden;
+  }
+  .floor .tile:nth-child(even){background:var(--floor-b);}
+  .tile::before{
+    content:'';position:absolute;inset:0;
+    opacity:0;transition:opacity .3s;
+  }
+  .tile:nth-child(1)::before{background:radial-gradient(circle at center, rgba(249,199,79,0.35), transparent 70%);}
+  .tile:nth-child(2)::before{background:radial-gradient(circle at center, rgba(255,77,151,0.35), transparent 70%);}
+  .tile:nth-child(3)::before{background:radial-gradient(circle at center, rgba(139,92,246,0.35), transparent 70%);}
+  .tile:nth-child(4)::before{background:radial-gradient(circle at center, rgba(255,107,53,0.35), transparent 70%);}
+  .tile:hover{transform:translateY(-4px);}
+  .tile:hover::before{opacity:1;}
+  .tile .tile-label{
+    font-family:'Bungee',cursive;
+    font-size:1rem;
+    position:relative;z-index:1;
+    color:var(--cream);
+    margin-bottom:8px;
+  }
+  .tile .tile-jp{
+    position:relative;z-index:1;
+    font-size:0.8rem;
+    color:var(--muted);
+    line-height:1.6;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid rgba(249,199,79,0.2);
+    background:#08080d;
+    padding:56px 24px 40px;
+  }
+  .footer-inner{
+    max-width:920px;margin:0 auto;
+    display:flex;flex-direction:column;gap:36px;
+  }
+  .footer-hub{
+    text-align:center;
+  }
+  .footer-hub p{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;color:var(--muted);letter-spacing:1px;margin-bottom:10px;
+  }
+  .footer-hub a.hub-link{
+    font-family:'Bungee',cursive;
+    font-size:0.95rem;
+    color:var(--gold);
+  }
+  .platform-links{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:14px 24px;
+    font-size:0.8rem;color:var(--muted);
+  }
+  .platform-links span{
+    padding:6px 14px;border:1px solid rgba(157,155,179,0.3);border-radius:20px;
+  }
+
+  .contact-box{
+    max-width:420px;margin:0 auto;width:100%;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(249,199,79,0.2);
+    border-radius:12px;
+    padding:24px;
+  }
+  .contact-box p.label{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;color:var(--gold);letter-spacing:2px;margin-bottom:14px;
+    text-align:center;
+  }
+  .contact-box form{display:flex;flex-direction:column;gap:10px;}
+  .contact-box input, .contact-box textarea{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(157,155,179,0.3);
+    border-radius:6px;
+    padding:10px 12px;
+    color:var(--cream);
+    font-family:'Poppins',sans-serif;
+    font-size:0.85rem;
+  }
+  .contact-box textarea{resize:vertical;min-height:70px;}
+  .contact-box button{
+    margin-top:4px;
+    background:linear-gradient(90deg,var(--gold),var(--pink));
+    border:none;border-radius:6px;
+    padding:10px;
+    font-family:'Bungee',cursive;
+    font-size:0.8rem;color:#08080d;
+    cursor:pointer;
+    transition:opacity .2s;
+  }
+  .contact-box button:hover{opacity:0.85;}
+
+  .ai-notice{
+    text-align:center;
+    font-size:0.7rem;
+    color:var(--muted);
+    line-height:1.8;
+    max-width:640px;
+    margin:0 auto;
+  }
+  .copyright{
+    text-align:center;
+    font-family:'Space Mono',monospace;
+    font-size:0.7rem;
+    color:#4a4959;
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .rays,.ball,.hero .scroll-hint{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo">NIGHT FEVER VOICE</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="playlist.html">Playlist</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="ball-wrap">
+    <div class="rays"></div>
+    <div class="ball"></div>
+  </div>
+  <h1>NIGHT FEVER</h1>
+  <p class="sub">歌をもっと好きに、もっと上手に。</p>
+  <p class="tagline">好きな曲を研究して、練習して、次のカラオケでキメる。<br>そんな夜のための勉強部屋。</p>
+  <div class="scroll-hint">SCROLL ▾</div>
+</section>
+
+<section class="intro">
+  <p class="eyebrow">ABOUT THIS ROOM</p>
+  <h2>このサイトについて</h2>
+  <p>
+    「歌がうまくなりたい」も「あの曲を完璧に歌いたい」も、結局は同じミラーボールの下にある。
+    ここは曲の分析、発声の練習記録、カラオケで歌いたい選曲リストをまとめておくための個人的なノート。
+    派手な照明の下でも、地味な積み重ねがものを言う。
+  </p>
+</section>
+
+<section class="floor-section">
+  <p class="eyebrow">DANCE FLOOR</p>
+  <div class="floor">
+    <a class="tile" href="blog.html">
+      <span class="tile-label">BLOG</span>
+      <span class="tile-jp">練習日記<br>発声メモや気づき</span>
+    </a>
+    <a class="tile" href="gallery.html">
+      <span class="tile-label">GALLERY</span>
+      <span class="tile-jp">曲のイメージ<br>練習の記録</span>
+    </a>
+    <a class="tile" href="playlist.html">
+      <span class="tile-label">PLAYLIST</span>
+      <span class="tile-jp">カラオケ選曲<br>次に歌いたい曲</span>
+    </a>
+    <a class="tile" href="about.html">
+      <span class="tile-label">ABOUT</span>
+      <span class="tile-jp">このサイトと<br>管理人について</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-hub">
+      <p>MORE FROM</p>
+      <a class="hub-link" href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Azalea Creative Room</a>
+    </div>
+    <div class="platform-links">
+      <span>Jump Rookie: Azalea72</span>
+      <span>DaysNEO</span>
+      <span>Kakuyomu</span>
+      <span>Pixiv</span>
+      <span>YouTube: リリポピ</span>
+    </div>
+
+    <div class="contact-box">
+      <p class="label">ひとことフィードバック</p>
+      <form action="https://formspree.io/f/maqvpvoz" method="POST">
+        <input type="text" name="name" placeholder="お名前（任意）">
+        <input type="email" name="email" placeholder="メールアドレス（任意）">
+        <textarea name="message" placeholder="感想や選曲リクエストなど" required></textarea>
+        <button type="submit">送信する</button>
+      </form>
+    </div>
+
+    <p class="ai-notice">
+      本サイトに掲載する文章・画像・イラストは、生成AIの学習データとして使用することを禁じます。<br>
+      No content on this site may be used for AI training purposes.
+    </p>
+    <p class="copyright">&copy; 2026 NIGHT FEVER VOICE / Azalea Creative Room</p>
+  </div>
+</footer>
+
+</body>
+</html>
