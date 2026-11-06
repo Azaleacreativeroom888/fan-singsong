@@ -91,6 +91,67 @@
     line-height:1.8;
   }
 
+  /* ---------- REPORT LINK BOX ---------- */
+  .report-wrap{
+    max-width:1100px;margin:0 auto;
+    padding:0 24px 36px;
+  }
+  .report-box{
+    display:flex;align-items:center;gap:22px;
+    max-width:620px;margin:0 auto;
+    background:linear-gradient(135deg, var(--floor-a), var(--floor-b));
+    border:1px solid rgba(249,199,79,0.3);
+    border-radius:12px;
+    padding:22px 26px;
+    position:relative;
+    overflow:hidden;
+    transition:all .25s;
+  }
+  .report-box::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:linear-gradient(180deg,var(--gold),var(--pink));
+  }
+  .report-box::after{
+    content:'';position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;
+    background:radial-gradient(circle, rgba(255,77,151,0.25), transparent 70%);
+    opacity:0;transition:opacity .3s;
+  }
+  .report-box:hover{
+    transform:translateY(-4px);
+    border-color:rgba(249,199,79,0.6);
+    box-shadow:0 8px 28px rgba(255,77,151,0.15);
+  }
+  .report-box:hover::after{opacity:1;}
+  .report-icon{
+    font-size:1.6rem;flex-shrink:0;
+    width:56px;height:56px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(249,199,79,0.08);
+    border:1px solid rgba(249,199,79,0.25);
+    border-radius:50%;
+  }
+  .report-text{flex:1;min-width:0;position:relative;z-index:1;}
+  .report-tag{
+    display:block;
+    font-family:'Space Mono',monospace;
+    font-size:0.68rem;letter-spacing:2px;color:var(--pink);
+    margin-bottom:4px;
+  }
+  .report-title{
+    display:block;
+    font-family:'Bungee',cursive;
+    font-size:1.05rem;color:var(--cream);
+    margin-bottom:4px;
+  }
+  .report-desc{
+    display:block;font-size:0.8rem;color:var(--muted);line-height:1.6;
+  }
+  .report-arrow{
+    font-size:1.4rem;color:rgba(249,199,79,0.45);
+    flex-shrink:0;transition:all .25s;position:relative;z-index:1;
+  }
+  .report-box:hover .report-arrow{color:var(--gold);transform:translateX(4px);}
+
   /* ---------- FILTER ---------- */
   .filters{
     max-width:1100px;margin:0 auto;
@@ -287,6 +348,18 @@
   <p class="eyebrow">SNAPSHOTS</p>
   <h1>GALLERY</h1>
   <p>曲のイメージ、練習メモ、気になった歌詞の一節。<br>フロアに散らばった記録たち。</p>
+</div>
+
+<div class="report-wrap">
+  <a class="report-box" href="report1.html">
+    <div class="report-icon">🎤</div>
+    <div class="report-text">
+      <span class="report-tag">REPORT 01</span>
+      <span class="report-title">音程向上</span>
+      <span class="report-desc">音程を安定させるための練習まとめ</span>
+    </div>
+    <span class="report-arrow">›</span>
+  </a>
 </div>
 
 <div class="filters">
